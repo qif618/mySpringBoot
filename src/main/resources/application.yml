@@ -1,0 +1,36 @@
+
+spring:
+  devtools:
+    restart:
+#      是否执行热部署
+      enabled: true
+      additional-paths: src/main/java
+
+  profiles:
+    active: dev
+
+  datasource:
+
+    driver-class-name: com.mysql.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/girl
+    username: root
+    password: 123
+
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: false
+
+  freemarker:
+              allowRequestOverride: false
+              allowSessionOverride: false
+              cache: true
+              checkTemplateLocation: true
+              contentType: text/html
+              exposeRequestAttributes: false
+              exposeSessionAttributes: false
+              exposeSpringMacroHelpers: false
+              suffix: .ftl
+              charset: UTF-8
+
+

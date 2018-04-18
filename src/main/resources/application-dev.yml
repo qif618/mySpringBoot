@@ -1,0 +1,6 @@
+server:
+  port: 8088
+  context-path: /girl
+girl:
+  name: ruru
+  age: 18
