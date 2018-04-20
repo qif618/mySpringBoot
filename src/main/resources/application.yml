@@ -1,5 +1,6 @@
 
 spring:
+
   devtools:
     restart:
 #      是否执行热部署
@@ -10,7 +11,6 @@ spring:
     active: dev
 
   datasource:
-
     driver-class-name: com.mysql.jdbc.Driver
     url: jdbc:mysql://localhost:3306/girl
     username: root
@@ -22,15 +22,15 @@ spring:
     show-sql: false
 
   freemarker:
-              allowRequestOverride: false
-              allowSessionOverride: false
-              cache: true
-              checkTemplateLocation: true
-              contentType: text/html
-              exposeRequestAttributes: false
-              exposeSessionAttributes: false
-              exposeSpringMacroHelpers: false
-              suffix: .ftl
-              charset: UTF-8
+    allowRequestOverride: false
+    allowSessionOverride: false
+    cache: true
+    checkTemplateLocation: true
+    contentType: text/html
+    exposeRequestAttributes: false
+    exposeSessionAttributes: false
+    exposeSpringMacroHelpers: false
+    suffix: .ftl
+    charset: UTF-8
 
 

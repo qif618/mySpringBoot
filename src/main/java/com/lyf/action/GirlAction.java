@@ -1,12 +1,13 @@
 package com.lyf.action;
 
-import com.lyf.aspect.HttpAspect;
+import com.lyf.common.ResponseCode;
+import com.lyf.exception.MyException;
 import com.lyf.model.Girl;
+import com.lyf.common.ServerResponse;
 import com.lyf.service.GirlService;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
@@ -37,12 +38,40 @@ public class GirlAction {
     }
     //保存单条数据
     @RequestMapping("/saveGirl")
-    public Girl saveGirl(@Valid Girl girl, BindingResult br){
+    public ServerResponse saveGirl(@Valid Girl girl, BindingResult br){
         if(br.hasErrors()){
-            System.out.print(br.getFieldError().getDefaultMessage());
-            return  null;
+            return null;
+           // return ServerResponse.createByErrorMessage(br.getFieldError().getDefaultMessage());
         }
         girlService.saveGirl(girl);
-        return girl;
+        return ServerResponse.createBySuccess(girl);
+    }
+
+    @RequestMapping("/get/{id}")
+    public Girl getGirl(@PathVariable Integer id) throws Exception{
+
+        return girlService.findGirl(id);
+    }
+
+    /**
+     * 事务测试
+     * @throws Exception
+     */
+    @RequestMapping("/transactionSave")
+    public void transactionSave(){
+
+        Girl girl1 = new Girl();
+        girl1.setName("CCCCCC");
+        girl1.setAge(26);
+
+        Girl girl2 = new Girl();
+        girl2.setName("dddddddd");
+        girl2.setAge(14);
+
+        try {
+            girlService.transactionSave(girl1,girl2);
+        } catch (Exception e) {
+            throw new MyException(ResponseCode.AGE_ERROR);
+        }
     }
 }

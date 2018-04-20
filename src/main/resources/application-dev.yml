@@ -2,5 +2,5 @@ server:
   port: 8088
   context-path: /girl
 girl:
-  name: ruru
+  name: luna
   age: 18
